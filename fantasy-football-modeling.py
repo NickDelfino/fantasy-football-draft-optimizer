@@ -8,10 +8,6 @@ def main():
 
     fantasyStats2017 = pd.read_csv("./fantasy-football-data-2017.csv")
 
-    fantasyStats2017.pop('Rk')
-    fantasyStats2017.pop('Player')
-    fantasyStats2017.pop('Tm')
-
     print("Create the target for the 2017 data.")
     fantasyStats2017['target'] = fantasyStats2017.apply(lambda row: get_target_column(row.FDPt), axis=1)
 
@@ -19,11 +15,22 @@ def main():
     fantasyStats2017['FantPos'] = fantasyStats2017['FantPos'].apply(normalize_player_position)
     fantasyStats2017.fillna(0, inplace=True)
 
+    fantasyStats2017.pop('Rk')
+    fantasyStats2017.pop('Player')
+    fantasyStats2017.pop('Tm')
+    fantasyStats2017.pop('FDPt')
+    fantasyStats2017.pop('VBD')
+    fantasyStats2017.pop('OvRank')
+    fantasyStats2017.pop('PosRank')
+    fantasyStats2017.pop('DKPt')
+    fantasyStats2017.pop('PPR')
+    fantasyStats2017.pop('FantPt')
+
     print("Spot check 2017 data target after creation.")
     print(fantasyStats2017.head(5))
 
     model = Sequential()
-    model.add(Dense(128, activation='relu', input_dim=30))
+    model.add(Dense(128, activation='relu', input_dim=23))
     model.add(Dense(128, activation='relu'))
     model.add(Dense(1, activation='sigmoid'))
 
