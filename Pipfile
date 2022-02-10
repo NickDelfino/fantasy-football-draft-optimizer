@@ -9,7 +9,7 @@ verify_ssl = true
 keras = "*"
 pandas = "*"
 sklearn = "*"
-tensorflow = "~=1.13"
+tensorflow = "~=2.5"
 
 [requires]
 python_version = "3.7"
